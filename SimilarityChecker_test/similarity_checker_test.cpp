@@ -4,20 +4,23 @@
 
 using namespace std;
 
-TEST(SimilarityChecker, checkLength_SameLength) {
-	string str1 = "ABCDE";
-	string str2 = "ABCDE";
+class SimilarityCheckerFixture : public testing::Test {
+public:
 	SimilarityChecker checker;
-	int ret = checker.checkLength(str1, str2);
-	
-	EXPECT_EQ(60, ret);
+	int checkLength(string str1, string str2)
+	{
+		return checker.checkLength(str1, str2);
+	}
+};
+
+TEST_F(SimilarityCheckerFixture, checkLength_SameLength) {
+	int expected_score = 60;
+	int actual_score = checkLength("ABCDE", "ABCDE");
+	EXPECT_EQ(expected_score, actual_score);
 }
 
-TEST(SimilarityChecker, checkLength_LongerThanOrEqaulTo2Times) {
-	string str1 = "A";
-	string str2 = "BB";
-	SimilarityChecker checker;
-	int ret = checker.checkLength(str1, str2);
-
-	EXPECT_EQ(0, ret);
+TEST_F(SimilarityCheckerFixture, checkLength_LongerThanOrEqaulTo2Times) {
+	int expected_score = 0;
+	int actual_score = checkLength("A", "BB");
+	EXPECT_EQ(expected_score, actual_score);
 }
