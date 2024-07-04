@@ -4,15 +4,12 @@ using namespace std;
 class SimilarityChecker
 {
 public:
-	const int MAX_SCORE = 60;
-	const int MIN_SCORE = 0;
-
 	int checkLength(const int len1, const int len2) {
 		if (isLengthSame(len1, len2))
-			return MAX_SCORE;
+			return CHECK_LENGTH_SCORE_MAX;
 
 		if (isLengthDouble(len1, len2))
-			return MIN_SCORE;
+			return CHECK_LENGTH_SCORE_MIN;
 
 		return getPartialScore(len1, len2);
 	}
@@ -44,4 +41,7 @@ private:
 
 		return 60 - (60 * (Gap) / B);
 	}
+
+	const int CHECK_LENGTH_SCORE_MAX = 60;
+	const int CHECK_LENGTH_SCORE_MIN = 0;
 };
