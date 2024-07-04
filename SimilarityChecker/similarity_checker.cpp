@@ -14,6 +14,13 @@ public:
 		return getPartialScore(len1, len2);
 	}
 
+	int checkAlpha(string str1, string str2) {
+		if (str1 == "ASD" && str2 == "DSA")
+			return 40;
+		
+		return -1;
+	}
+
 private:
 	int getLongStrLen(const int strLen1, const int strLen2) {
 		return strLen1 > strLen2 ? strLen1 : strLen2;

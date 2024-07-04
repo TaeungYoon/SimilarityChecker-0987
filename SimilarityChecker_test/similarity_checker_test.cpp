@@ -36,3 +36,13 @@ TEST_F(SimilarityCheckerFixture, checkLength_PartialScoreStr2Longer) {
 	int actual_score = checkLength("AA", "AAE");
 	EXPECT_EQ(expected_score, actual_score);
 }
+
+TEST(SimilarityChecker, checkAlpha_Same) {
+	string str1 = "ASD";
+	string str2 = "DSA";
+
+	SimilarityChecker checker;
+	int expected_score = 40;
+	int actual_score = checker.checkAlpha(str1, str2);
+	EXPECT_EQ(expected_score, actual_score);
+}
