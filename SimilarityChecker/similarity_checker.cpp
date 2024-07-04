@@ -15,13 +15,41 @@ public:
 	}
 
 	int checkAlpha(string str1, string str2) {
-		if (str1 == "ASD" && str2 == "DSA")
+		countAlphabet(str1, str2);
+
+		int TotalCnt = 0;
+		int SameCnt = 0;
+
+		for (int i = 0; i < ALPHA_LETTER_MAX; i++) {
+			if (str1Alpha[i] == 1 || str2Alpha[i] == 1)
+				TotalCnt++;
+
+			if (str1Alpha[i] == 1 && str2Alpha[i] == 1)
+				SameCnt++;
+		}
+
+		if (TotalCnt == SameCnt)
 			return 40;
 
-		if (str1 == "A" && str2 == "BB")
+		if (SameCnt == 0)
 			return 0;
+
+		int score = (40 * SameCnt) / TotalCnt;
 		
-		return -1;
+		return score;
+	}
+
+	void countAlphabet(std::string& str1, std::string& str2)
+	{
+		for (auto& c : str1) {
+			int index = c - 'A';
+			str1Alpha[index] = 1;
+		}
+
+		for (auto& c : str2) {
+			int index = c - 'A';
+			str2Alpha[index] = 1;
+		}
 	}
 
 private:
@@ -54,4 +82,7 @@ private:
 
 	const int CHECK_LENGTH_SCORE_MAX = 60;
 	const int CHECK_LENGTH_SCORE_MIN = 0;
+	const int ALPHA_LETTER_MAX = 26;
+	int str1Alpha[26] = { 0, };
+	int str2Alpha[26] = { 0, };
 };

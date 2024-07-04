@@ -47,8 +47,20 @@ TEST_F(SimilarityCheckerFixture, checkAlpha_AllSameAlphaBet) {
 	EXPECT_EQ(expected_score, actual_score);
 }
 
+TEST_F(SimilarityCheckerFixture, checkAlpha_AllSameAlphaBetWithDiffLen) {
+	int expected_score = 40;
+	int actual_score = checkAlpha("AAABB", "BA");
+	EXPECT_EQ(expected_score, actual_score);
+}
+
 TEST_F(SimilarityCheckerFixture, checkAlpha_AllDifferentAlphaBet) {
 	int expected_score = 0;
 	int actual_score = checkAlpha("A", "BB");
+	EXPECT_EQ(expected_score, actual_score);
+}
+
+TEST_F(SimilarityCheckerFixture, checkAlpha_PartialSameAlphaBet) {
+	int expected_score = 20;
+	int actual_score = checkAlpha("AA", "AAE");
 	EXPECT_EQ(expected_score, actual_score);
 }
