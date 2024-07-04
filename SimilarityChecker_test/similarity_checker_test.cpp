@@ -11,6 +11,10 @@ public:
 	{
 		return checker.checkLength(str1.size(), str2.size());
 	}
+	int checkAlpha(string str1, string str2)
+	{
+		return checker.checkAlpha(str1, str2);
+	}
 };
 
 TEST_F(SimilarityCheckerFixture, checkLength_SameLength) {
@@ -37,12 +41,14 @@ TEST_F(SimilarityCheckerFixture, checkLength_PartialScoreStr2Longer) {
 	EXPECT_EQ(expected_score, actual_score);
 }
 
-TEST(SimilarityChecker, checkAlpha_Same) {
-	string str1 = "ASD";
-	string str2 = "DSA";
-
-	SimilarityChecker checker;
+TEST_F(SimilarityCheckerFixture, checkAlpha_AllSameAlphaBet) {
 	int expected_score = 40;
-	int actual_score = checker.checkAlpha(str1, str2);
+	int actual_score = checkAlpha("ASD", "DSA");
+	EXPECT_EQ(expected_score, actual_score);
+}
+
+TEST_F(SimilarityCheckerFixture, checkAlpha_AllDifferentAlphaBet) {
+	int expected_score = 0;
+	int actual_score = checkAlpha("A", "BB");
 	EXPECT_EQ(expected_score, actual_score);
 }
